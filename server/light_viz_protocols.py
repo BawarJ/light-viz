@@ -11,19 +11,40 @@ import paraview
 from paraview import simple, servermanager
 from paraview.web import protocols as pv_protocols
 
-# Needed for:
-#    vtkSMPVRepresentationProxy
-#    vtkSMTransferFunctionProxy
-#    vtkSMTransferFunctionManager
-from vtk.vtkPVServerManagerRendering import vtkSMPVRepresentationProxy, vtkSMTransferFunctionProxy, vtkSMTransferFunctionManager
+from vtkmodules.vtkCommonCore import vtkUnsignedCharArray, vtkCollection
+from vtkmodules.vtkCommonDataModel import vtkImageData
+from vtkmodules.vtkWebCore import vtkDataEncoder
 
-# Needed for:
-#    vtkSMProxyManager
-from vtk.vtkPVServerManagerCore import vtkSMProxyManager
+try:
+    # PV 5.6
+    from vtkmodules.vtkPVClientServerCoreRendering import vtkPVRenderView
+    from vtkmodules.vtkPVServerManagerRendering import (
+        vtkSMPVRepresentationProxy,
+        vtkSMTransferFunctionProxy,
+        vtkSMTransferFunctionManager,
+    )
+except:
+    pass
 
-# Needed for:
-#    vtkDataObject
-from vtk.vtkCommonDataModel import vtkDataObject
+try:
+    # PV 5.7
+    from paraview.modules.vtkPVClientServerCoreRendering import vtkPVRenderView
+    from paraview.modules.vtkPVServerManagerRendering import (
+        vtkSMPVRepresentationProxy,
+        vtkSMTransferFunctionProxy,
+        vtkSMTransferFunctionManager,
+    )
+except:
+    pass
+
+try:
+    # PV 5.8
+    from paraview.servermanager import vtkPVRenderView
+    from paraview.servermanager import vtkSMPVRepresentationProxy
+    from paraview.servermanager import vtkSMTransferFunctionManager
+    from paraview.servermanager import vtkSMTransferFunctionProxy
+except:
+    pass
 
 # =============================================================================
 #
