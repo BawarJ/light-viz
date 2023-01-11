@@ -25,7 +25,7 @@
     "react-redux": "5.0.6",
     "redux": "3.7.2",
     "reselect": "3.0.1",
-    "kw-web-suite": "5.0.1",
+    "kw-web-suite": "11.1.0",
     "kw-doc": "1.1.1",
     "paraviewweb": "3.1.1",
     "wslink": "0.1.7"
